@@ -132,9 +132,11 @@ export default {
         <a class="navbar-brand fs-4"
           ><span class="text-primary">SKECHERS</span> The Mall Korat</a
         >
+
         <!-- <form class="d-flex" role="search"> -->
         <div class="d-flex">
           <input
+            v-if="display"
             class="form-control me-2"
             type="search"
             placeholder="ป้อนรหัสสินค้า"
@@ -175,6 +177,10 @@ export default {
 
 .big-one {
   z-index: 999;
+}
+
+button {
+  margin: 0 0 0 auto;
 }
 
 thead {

@@ -8,7 +8,7 @@ export default {
 <template>
   <div class="wrapper">
     <div class="position-relative w-100"></div>
-    <div class="layout mx-auto">
+    <!-- <div class="layout mx-auto">
       <div v-for="loc in current.location">
         <div
           v-show="loc[0]"
@@ -17,61 +17,82 @@ export default {
           role="status"
         ></div>
       </div>
-    </div>
+    </div> -->
+    <h2 class="text-primary">{{ current.name }}</h2>
+    <h4 class="text-secondary">
+      {{ current.desc.split("_")[1] }}
+    </h4>
+
     <table class="table">
-      <thead>
+      <thead></thead>
+      <tbody>
         <tr>
-          <th scope="col">
-            <div class="alert alert-primary" role="alert">
-              {{ current.name }} : {{ current.desc.split("_")[1] }}
-            </div>
-          </th>
-          <th scope="col">
-            <div
-              class="alert alert-danger"
-              role="alert"
-              v-for="location in current.location"
-            >
-              {{ location }}
-              <div v-if="location.slice(1) > 57 && location.slice(1) % 4 === 1">
-                (1F)
-              </div>
-              <div
-                v-else-if="
-                  location.slice(1) > 57 && location.slice(1) % 4 === 0
-                "
-              >
-                (2F)
-              </div>
-              <div
-                v-else-if="
-                  location.slice(1) > 57 && location.slice(1) % 4 === 3
-                "
-              >
-                (3F)
-              </div>
-              <div
-                v-else-if="
-                  location.slice(1) > 57 && location.slice(1) % 4 === 2
-                "
-              >
-                (4F)
-              </div>
-            </div>
-          </th>
+          <th>Location</th>
+          <td>
+            <span v-for="location in current.location"
+              >{{ location + " " }}
+            </span>
+          </td>
         </tr>
-      </thead>
+        <tr>
+          <th>Zone</th>
+          <td>Foamies Woman</td>
+        </tr>
+        <tr>
+          <th>Shelf</th>
+          <td>From the far most inside</td>
+        </tr>
+        <tr>
+          <th>Floor</th>
+          <td>
+            <div
+              v-if="
+                current.location[0].slice(1) > 57 &&
+                current.location[0].slice(1) % 4 === 1
+              "
+            >
+              The lowest floor
+            </div>
+            <div
+              v-else-if="
+                current.location[0].slice(1) > 57 &&
+                current.location[0].slice(1) % 4 === 0
+              "
+            >
+              The second floor from lowest
+            </div>
+            <div
+              v-else-if="
+                current.location[0].slice(1) > 57 &&
+                current.location[0].slice(1) % 4 === 3
+              "
+            >
+              The second floor from top
+            </div>
+            <div
+              v-else-if="
+                current.location[0].slice(1) > 57 &&
+                current.location[0].slice(1) % 4 === 2
+              "
+            >
+              The top floor
+            </div>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
     <table class="table table-responsive table-striped table-bordered">
       <tbody class="table-group-divider">
         <tr class="table-responsive">
           <th scope="row" class="table-responsive">ไซส์</th>
-          <td v-for="item in current.sizes">{{ item.split("=")[0] }}</td>
-        </tr>
-        <tr class="table-responsive">
           <th scope="row" class="table-responsive">คงเหลือ</th>
-          <td v-for="item in current.sizes">
+        </tr>
+        <tr v-for="item in current.sizes">
+          <td>
+            {{ item.split("=")[0] }}
+          </td>
+          <td>
             {{
               isNaN(item.split("=")[1])
                 ? item.split("=")[1]
@@ -86,9 +107,14 @@ export default {
 </template>
 
 <style scoped>
-button {
+/* button {
   margin-left: auto !important;
   margin-right: 0 !important;
+} */
+
+h2,
+h4 {
+  margin-left: 8px;
 }
 
 .layout {

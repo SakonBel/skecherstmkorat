@@ -8,11 +8,6 @@ export default {
         "https://images.skechers.com/image;width=800%2Cformat=auto/***_PROFILE_01",
     };
   },
-  methods: {
-    updateString(nameData) {
-      this.oldUrl = this.oldUrl.raplace("***", nameData);
-    },
-  },
 };
 </script>
 
@@ -21,16 +16,12 @@ export default {
     <table class="table table-striped table-bordered">
       <thead class="table-dark big-one">
         <tr>
-          <th scope="col">ลำดับ</th>
           <th scope="col">รหัสสินค้า</th>
           <th scope="col">จำนวน</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(row, index) in newItems" :key="row.id">
-          <th scope="row">
-            {{ index + 1 }}
-          </th>
           <td>
             <h5>
               {{ row.name }}
@@ -105,6 +96,11 @@ export default {
 
 .big-one {
   z-index: 999;
+}
+
+img {
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px gainsboro;
 }
 
 thead {
